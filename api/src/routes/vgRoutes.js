@@ -1,6 +1,7 @@
 const { Router }      = require('express');
-const videogameGetALLHandler = require("../handlers/vgGetAllHandler");
-const videogamePostHandler = require("../handlers/vgPostHandler");
+const videogamePostHandler    = require("../handlers/vgPostHandler");
+const videogameGetALLHandler  = require("../handlers/vgGetAllHandler");
+
 
 const videogamesRoutes = Router();
 

@@ -1,5 +1,5 @@
 const { Videogame, Genres } = require("../db");
-const getDataBD_OUT = require("../helpers/getDataBD_OUT")
+const getDataBD_OUT = require("../helpers/getDataBD_OUT");
 
 
 const videogameFindAll = async() =>{
