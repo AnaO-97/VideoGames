@@ -1,0 +1,10 @@
+.contenedorVG {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+}
+.contenedorVG [class*="videoGame"] {
+    margin-left: -50px;
+}
