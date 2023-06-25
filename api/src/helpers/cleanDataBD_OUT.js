@@ -29,7 +29,7 @@ const cleanDataBD_OUT = (data) =>{
     data.map((vidGame) => {
         objAuxi.vgMine  = false;
         objAuxi.id      = vidGame.id;
-        objAuxi.nombre  = vidGame.name;
+        objAuxi.nombre  = vidGame.name.toUpperCase();
         objAuxi.rating  = vidGame.rating;
         objAuxi.imagen  = vidGame.background_image; 
         objAuxi.lanzamiento = vidGame.released;

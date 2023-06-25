@@ -10,7 +10,8 @@ const videogameCreate = async (atributos) =>{
 
     const newVideoGame = await Videogame
         .create({
-            nombre,           imagen,
+            nombre : nombre.toUpperCase(),           
+            imagen,
             descripcion,      plataformas,
             fechaLanzamiento, rating,
         }
