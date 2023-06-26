@@ -6,8 +6,8 @@ const videogameGetONEHandler = require("../handlers/vgGetONEHandler");
 
 const videogamesRoutes = Router();
 
-videogamesRoutes.get ("/",      videogameGetHandler);
-videogamesRoutes.get ("/:idVG", videogameGetONEHandler);
 videogamesRoutes.post("/", videogamePostHandler);
+videogamesRoutes.get ("/", videogameGetHandler);
+videogamesRoutes.get ("/:idVideogame", videogameGetONEHandler);
 
 module.exports = videogamesRoutes;

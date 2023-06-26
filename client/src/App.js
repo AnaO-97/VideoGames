@@ -1,13 +1,14 @@
 import Nav from "./components/components/Nav";
-import { Home, Landing } from "./views/index";
+import { Home, Landing, Detail } from "./views/index";
 import { Switch, Route, useLocation  } from "react-router-dom";
 
 function App() {
   const ubicacion = useLocation();
-  return (<div> 
-    {ubicacion.pathname !== "/" && <Nav/>}
-    
-      <Switch>       
+  return (    
+    <div> 
+        {ubicacion.pathname !== "/" && <Nav ubc={ubicacion}/>}
+
+        <Switch>       
         <Route exact path = "/"
                render = {() => <Landing/>} 
         />
@@ -18,13 +19,11 @@ function App() {
 
         {/* <Route path = "/create"
                 render = {() => <FormPokemon/>}
-        />       
+        />  */}     
 
-        <Route path   = "/detail/:idPok"
-                render = {
-                ({match}) => <Detail idPok = {match.params.idPok}/>
-              }
-        /> */}
+        <Route  path   = "/videogame/detail/:idVideogame"
+                render = {({match}) => <Detail id = {match.params.idVideogame}/>}
+        />
       </Switch>
   </div>);
 

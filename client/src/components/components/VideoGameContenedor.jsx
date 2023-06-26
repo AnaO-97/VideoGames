@@ -46,26 +46,33 @@ const VideoGameContenedor = (props) => {
         <button onClick = {()=>limpiarBTTHandler()}>
             LIMPIAR
         </button>
-
+        <h5>        
+            {estado === "videogamesAll"
+            ? "TODOS:"
+            : "SELECCIONADOS:"
+            }
+        </h5>
         <div className = {style.contenedorVG}>
             {renderizar.map((game) => {                
                 return(
                     // <h4 key = { game.id }>nombre: {game.nombre}</h4>                    
-                    <VideoGame  
-                        key     = {game.id}                       
-                        id      = {game.id}
-                        imagen  = {game.imagen}
-                        nombre  = {game.nombre}
-                        generos     = {game.Genres}
-                        plataformas = {game.plataformas}                        
+                    <VideoGame videogame = {game}
+                                key      = {game.id}
                     />
-                    
                 )                
             })
             }
         </div>
-        </div>        
+        </div>
     );
 };
+
+
+// key     = {game.id}                       
+// id      = {game.id}
+// imagen  = {game.imagen}
+// nombre  = {game.nombre}
+// generos     = {game.Genres}
+// plataformas = {game.plataformas} 
 
 export default VideoGameContenedor;

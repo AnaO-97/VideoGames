@@ -6,8 +6,7 @@ const renderProp = (raw_array) =>{
         let keyx = 0;     
         return (
         <ul>
-            {
-                raw_array.map((genero)=>{  
+            {raw_array.map((genero)=>{  
                     keyx ++;                  
                     return (
                         typeof(genero)=== "object"
@@ -20,46 +19,50 @@ const renderProp = (raw_array) =>{
     }
 };
 
+// const {
+//     id, nombre, imagen,
+//     generos, plataformas
+// } = props;
+
 const VideoGame = (props) => {
-    const {
-        id, nombre, imagen,
-        generos, plataformas
-    } = props;
+    const { videogame } = props;
 
     return(
-        <div key = {id}
+        <Link to = {`videogame/detail/${videogame.id}`}>
+        <div key       = {videogame.id}
              className = {style.videoGame}
         >
             <div  className = {style.id}>
                 <h4> 
-                    id:      {id}
+                    id:      {videogame.id}
                 </h4>
             </div>
             
             <div className = {style.titulo}>
                 <h4>
-                        nombre:  {nombre}
+                        nombre:  {videogame.nombre}
                 </h4>
             </div>
      
             <div>
-                <img src = {imagen} 
+                <img src = {videogame.imagen} 
                      alt = "XimagenX" 
                 />
             </div>
 
             {/* <div className={style.seccionScroll}>
                 <h4 className = {style.infoExtra}> 
-                    generos: {renderProp(generos)}
+                    generos: {renderProp(videogame.generos)}
                 </h4>
             </div>
             
             <div className={style.seccionScroll}>
                 <h4 className = {style.infoExtra}> 
-                    plataformas: {renderProp(plataformas)}
+                    plataformas: {renderProp(videogame.plataformas)}
                 </h4>
             </div> */}
         </div>
+        </Link>
     );
 };
 

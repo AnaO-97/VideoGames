@@ -2,7 +2,9 @@ import React from "react";
 import Search from "./Shearch";
 import { NavLink } from "react-router-dom";
 
-const Nav = () => {
+const Nav = (props) => {
+    const ubicacion = props.ubc;
+
     return(
         <div>                      
             <NavLink to        =  "/"
@@ -17,14 +19,20 @@ const Nav = () => {
                 <button>CREAR</button>
             </NavLink>
 
-            {<NavLink to        = "/home"
-                     className = {({isActive})=>(isActive?"active":undefined)}>
-                <button>INICIO</button>
-            </NavLink>}
+            {ubicacion.pathname !== "/home" &&
+                <NavLink to        = "/home"
+                         className = {({isActive})=>(isActive?"active":undefined)}
+                >
+                    <button>INICIO</button>
+                </NavLink>
+            }
 
             <hr />
 
-            <Search/>
+            {ubicacion.pathname === "/home"
+             ? <Search/>
+             : null
+            }
         </div>
     );
 }
