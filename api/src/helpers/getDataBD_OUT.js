@@ -7,7 +7,7 @@ module.exports = async () => {
     let videoGamesBD_OUT   = [];
     let pageApi            = 1;
     
-    while(pageApi < 6){
+    while(pageApi < 2){
         const auxi  = (await axios.get(
             `https://api.rawg.io/api/games?key=${API_KEY}&page=${pageApi}`)
         ).data.results;

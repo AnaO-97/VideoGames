@@ -2,9 +2,9 @@ const { Videogame } = require("../db");
 
 const videogameCreate = async (atributos) =>{
     const {
-        nombre,           imagen,
-        descripcion,      plataformas,
-        fechaLanzamiento, rating,
+        nombre,      imagen,
+        descripcion, plataformas,
+        lanzamiento, rating,
         generos          
     } = atributos;
 
@@ -12,8 +12,8 @@ const videogameCreate = async (atributos) =>{
         .create({
             nombre : nombre.toUpperCase(),           
             imagen,
-            descripcion,      plataformas,
-            fechaLanzamiento, rating,
+            descripcion, plataformas,
+            lanzamiento, rating,
         }
     );
     

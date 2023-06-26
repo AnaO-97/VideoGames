@@ -1,44 +1,62 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getVideogames, getNombreAddHome } from "../../redux/actions/actions";
 
-function onSearch(idRecibido){
-    let haveIt = false;
+const Search = () => {
+   const dispatch = useDispatch();
+      
+   let [buscar, setBuscar] = useState({
+      vgNombre : "",
+      buscando : false,
+   });   
 
-    for (const personaje of characters) {
-       if(personaje.id === parseInt(idRecibido))
-          bandera = true;       
-    }
-    
-    if(!bandera){
-       axios(`https://rickandmortyapi.com/api/character/${idRecibido}`).then(({ data }) => {
-          if (data.name) {
-             setCharacters((oldChars) => [...oldChars, data]);
-          } else {
-             window.alert('¡No hay personajes con este ID!');
-          }
-       });
-    }
-    else
-       window.alert('¡El personaje ya existe, intente con otro identificador!');   
-}
+   const agregadoCorrecto = useSelector(state => state.agregadoCorrecto)
 
-const Search = (props) => {
-   let [idBuscar, setIdBuscar] = useState("");
+   useEffect(()=>{
+      if(buscar.buscando){
+         agregadoCorrecto === 0
+         ? window.alert('¡No hay videogames con esos caracteres!')
+         : window.alert(`${agregadoCorrecto} ¡Videogames encontrados!`)
+      }
+      setBuscar({
+         ...buscar,
+         buscando : false,
+      })
+   },[agregadoCorrecto])
 
-   const handleChange = (event) =>{
-      const idIngresado = event.target.value;
-      setIdBuscar(idIngresado);
+   const handleChange = (evento) =>{
+      const nombre = evento.target.value;
+      setBuscar({
+         ...buscar,
+         buscando : true,
+         vgNombre : nombre,
+      });
    }
 
+   const todosBTTHandler = ()=>{
+      dispatch(getVideogames());      
+   };
+
+   const buscarBTTHandler = ()=>{     
+      dispatch(getNombreAddHome(buscar.vgNombre));
+   };
+
    return (
-      <div>
-         <input 
-            type     = 'search'
-            onChange = {handleChange}
-            value    = {idBuscar}
-         />         
-         
-         <button onClick={()=>onSearch(idBuscar)}>Agregar</button>
-      </div>
+   <div>
+      <input 
+         type     = 'search'
+         onChange = {handleChange}
+         value    = {buscar.vgNombre}
+      />         
+      
+      <button onClick={()=>buscarBTTHandler()}>
+         BUSCAR
+      </button>
+
+      <button onClick={()=>todosBTTHandler()}>
+         TODOS
+      </button>
+   </div>      
    );
 }
 

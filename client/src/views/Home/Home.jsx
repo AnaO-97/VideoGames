@@ -1,19 +1,14 @@
 import VideoGameContenedor from "../../components/components/VideoGameContenedor";
-import { getVideogames } from "../../redux/actions/actions";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 
 function Home () {
-    const dispatch = useDispatch();
-
-    useEffect(()=> {
-        dispatch(getVideogames());
-    },[]);
-    
     return (
         <div>
-            <h3>Home page</h3>
-            <VideoGameContenedor />
+            <h3>BIENVENIDO</h3>
+            <h5>SELECCIONADOS:</h5>
+            <VideoGameContenedor seccion = "onlyHome"/>            
+            <hr />
+            <h5>TODOS:</h5>
+            <VideoGameContenedor seccion = "allVideogames"/>
         </div>        
     );
 }

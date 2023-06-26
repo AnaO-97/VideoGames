@@ -1,13 +1,10 @@
 import React from "react";
-import SearchBar from "./Shearch";
+import Search from "./Shearch";
 import { NavLink } from "react-router-dom";
-    
-const Nav = (props) => {
-    return(
-        <div>
-            <Search onSearch={this.props.onSearch} />
-            <hr />            
 
+const Nav = () => {
+    return(
+        <div>                      
             <NavLink to        =  "/"
                      className = {({isActive})=>(isActive?"active":undefined)}
             >
@@ -20,12 +17,14 @@ const Nav = (props) => {
                 <button>CREAR</button>
             </NavLink>
 
-            <NavLink to        = "/home"
+            {<NavLink to        = "/home"
                      className = {({isActive})=>(isActive?"active":undefined)}>
-                <button>HOME</button>
-            </NavLink>
+                <button>INICIO</button>
+            </NavLink>}
 
             <hr />
+
+            <Search/>
         </div>
     );
 }

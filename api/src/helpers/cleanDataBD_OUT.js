@@ -3,7 +3,7 @@ const cleanPlataformas = (rawPlataformas) =>{
     
     rawPlataformas.map((plataforma)=>{
         arrayPlataformas.push(
-            plataforma.platform.name
+            plataforma.platform.name.toUpperCase()
         )
     });
 
@@ -15,7 +15,7 @@ const cleanGeneros = (rawGenres) =>{
 
     rawGenres.map((genero) =>{
         arrayGeneros.push({
-            nombre : genero.name
+            nombre : genero.name.toUpperCase()
         })
     })
 

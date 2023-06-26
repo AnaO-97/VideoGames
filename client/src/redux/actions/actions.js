@@ -13,9 +13,9 @@ const getVideogames = () => {
     });
 };
 
-const getIDAddHome = (idVG) => {
+const getNombreAddHome = (vgNombre) => {
     return(async (dispatch) => {        
-        const videogame = (await axios.get(`http://localhost:3001/videogames/${idVG}`)
+        const videogame = (await axios.get(`http://localhost:3001/videogames/?nombre=${vgNombre}`)
         ).data;
                 
         dispatch({
@@ -25,7 +25,15 @@ const getIDAddHome = (idVG) => {
     });
 };
 
+const limpiarEstado = (estado) => {    
+    return({
+       type    : ACTION.CLEAR_STATE,
+       payload : estado, 
+    });
+}
+
 export {
     getVideogames,
-    getIDAddHome
+    getNombreAddHome,
+    limpiarEstado
 };
