@@ -19,11 +19,6 @@ const renderProp = (raw_array) =>{
     }
 };
 
-// const {
-//     id, nombre, imagen,
-//     generos, plataformas
-// } = props;
-
 const VideoGame = (props) => {
     const { videogame } = props;
 

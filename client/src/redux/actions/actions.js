@@ -13,6 +13,18 @@ const getVideogames = () => {
     });
 };
 
+const getOneVideogame = (idVideogame) => {
+    return(async (dispatch) => {
+        const videogame = (await axios.get(`http://localhost:3001/videogames/${idVideogame}`)
+        ).data;       
+
+        dispatch({
+            type    : ACTION.GET_ONEVIDEOGAME,
+            payload : videogame[0],
+        })        
+    });
+}
+
 const getNombreAddHome = (vgNombre) => {
     return(async (dispatch) => {        
         const videogame = (await axios.get(`http://localhost:3001/videogames/?nombre=${vgNombre}`)
@@ -35,5 +47,6 @@ const limpiarEstado = (estado) => {
 export {
     getVideogames,
     getNombreAddHome,
+    getOneVideogame,
     limpiarEstado
 };

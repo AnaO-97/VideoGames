@@ -2,6 +2,7 @@ import * as ACTION from "../actions/actionsTypes";
 
 const initialState = {
     videogamesAll : [],
+    videogameId   : {},
     videogamesHome: [],
     agregadoCorrecto : 0,
 };
@@ -29,6 +30,13 @@ const reducer = (state = initialState, action) =>{
             return({
                 ...state,
                 videogamesAll : payload,
+            })
+        }
+
+        case ACTION.GET_ONEVIDEOGAME :{
+            return({
+                ...state,
+                videogameId : payload
             })
         }
 

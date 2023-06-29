@@ -1,51 +1,37 @@
+const axios = require("axios");
+const { API_KEY } = process.env;
+const cleanDataBD_OUT = require("../helpers/cleanDataBD_OUT");
 const { Videogame, Genres } = require("../db")
-const   getDataBD_OUT  = require("../helpers/getDataBD_OUT");
 
-const filterBD_MINE = async (attribute,value) =>{
-    const videogameBD_MINE = (
-        await Videogame.findAll({       
-            where : {
-                [attribute] : value,
-            },
-            
-            attributes : ["vgMine","id","nombre","imagen","plataformas"],
-            
-            include    : {
-                model      :  Genres,
-                attributes : ["nombre"],
-                through    : { attributes : [] } 
-            }
-        })
-    );
+const videogameFindOne = async (idVideogame, source) => {
+    let videogameFound = {};
 
-    return videogameBD_MINE;
-}
-
-const filterBD_OUT = async (attribute, value) =>{  
-    const videogameBD_OUT = ((await getDataBD_OUT())
-        .filter(            
-            (element)=>element[attribute] === value
-        )
-    );
-
-    return videogameBD_OUT;
-}
-
-const videogameFindOne = async (attrPok) => {
-    let [ attribute,value ] = attrPok;  
+    switch (source) {
+        case "BD_MINE":{
+            videogameFound = await Videogame.findByPk(idVideogame,{
+                include : {
+                    model      :  Genres,
+                    attributes : ["nombre"],
+                    through    : { attributes : [] } 
+                }
+            });
+        } 
+        break;                      
     
-    attribute = attribute.toString(); 
+        case "BD_OUT":{            
+            const auxi = [(
+                await axios.get(`https://api.rawg.io/api/games/${idVideogame}?key=${API_KEY}`)
+            ).data];
 
-    value     = (
-        isNaN(value[0])
-        ? value[0].toString().toUpperCase() 
-        : parseInt(value[0],10)
-    );
+            videogameFound = cleanDataBD_OUT(auxi);
+        } 
+        break;
 
-    const dataBD_MINE = await filterBD_MINE(attribute,value); 
-    const dataBD_OUT  = await filterBD_OUT(attribute,value);
-    
-    return [...dataBD_MINE,...dataBD_OUT];
+        default:
+            return "Indicar donde realizar la búsqueda";
+    } 
+            
+    return videogameFound;
 };
 
 module.exports = videogameFindOne;
